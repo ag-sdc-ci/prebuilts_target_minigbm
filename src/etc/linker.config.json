@@ -1,0 +1,19 @@
+{
+	"provideLibs": [	
+		    "libdummy_binary_libgbm.a-x86_64-v2.so",
+		    "libdummy_binary_libgbm.a.so",
+		    "libdummy_headers_minigbm-x86_64-v2.so",
+		    "libdummy_headers_minigbm.so",
+		    "libdummy_minigbm_dev-x86_64-v2.so",
+		    "libdummy_minigbm_dev.so"
+	],
+	"requireLibs": [	
+		    "libarect.so",
+		    "libbinder_ndk.so",
+		    "libcutils.so",
+		    "libdrm.so",
+		    "libhidlbase.so",
+		    "libutils.so"
+	],
+	"visible": true
+}
