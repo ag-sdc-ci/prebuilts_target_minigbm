@@ -115,6 +115,7 @@ cc_prebuilt_binary {
     name: "android.hardware.graphics.allocator@4.0-service.minigbm",
     check_elf_files: false,
     prefer: true,
+    vendor_available: true,
     srcs: ["src/bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
 }
 
@@ -122,6 +123,7 @@ cc_prebuilt_binary {
     name: "android.hardware.graphics.allocator-service.minigbm",
     check_elf_files: false,
     prefer: true,
+    vendor_available: true,
     srcs: ["src/bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
 }
 
