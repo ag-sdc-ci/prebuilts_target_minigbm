@@ -118,6 +118,13 @@ cc_prebuilt_binary {
     srcs: ["src/bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
 }
 
+cc_prebuilt_binary {
+    name: "android.hardware.graphics.allocator-service.minigbm",
+    check_elf_files: false,
+    prefer: true,
+    srcs: ["src/bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
+}
+
 cc_defaults {
     name: "minigbm_cros_gralloc_defaults",
     defaults: ["minigbm_defaults"],
