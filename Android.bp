@@ -4,20 +4,20 @@
 package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
+
 prebuilt_apex {
     name: "org.blisslabs.ag.minigbm",
-    apex_name: "org.blisslabs.ag.minigbm",
-    source_apex_name: "org.blisslabs.ag.minigbm",
+    apex_name: "minigbm",
+    source_apex_name: "minigbm",
     arch: {
         x86_64: {
-            src: "org.blisslabs.ag.minigbm-14000010.apex",
+            src: "org.blisslabs.ag.minigbm.apex",
         },
     },
-    filename: "org.blisslabs.ag.minigbm-14000010.apex",
+    filename: "org.blisslabs.ag.minigbm.apex",
     prefer: true,
     installable: true,
 }
-
 
 cc_library_headers {
     name: "libminigbm_gralloc_headers",
@@ -30,7 +30,7 @@ cc_library_headers {
         "//apex_available:platform",
     ],
     export_include_dirs: [
-        "src/include",
+        "include",
     ],
 }
 
@@ -45,7 +45,7 @@ cc_library_headers {
         "//apex_available:platform",
     ],
     export_include_dirs: [
-        "src/include",
+        "include",
     ],
 }
 
@@ -57,7 +57,7 @@ cc_prebuilt_library {
     host_supported: true,
     check_elf_files: false,
     export_include_dirs: [
-        "src/include",
+        "include",
     ],
     prefer: true,
     apex_available: [
@@ -66,10 +66,10 @@ cc_prebuilt_library {
     ],
     min_sdk_version: "29",
     shared: {
-        srcs: ["src/lib/libgbm.so"],
+        srcs: ["lib64/libgbm.so"],
     },
     static: {
-        srcs: ["src/lib/libgbm.a"],
+        srcs: ["lib64/libgbm.a"],
     },
 }
 
@@ -81,7 +81,7 @@ cc_prebuilt_library_shared {
     host_supported: true,
     check_elf_files: false,
     export_include_dirs: [
-        "src/include",
+        "include",
     ],
     prefer: true,
     apex_available: [
@@ -89,7 +89,7 @@ cc_prebuilt_library_shared {
         "//apex_available:platform",
     ],
     min_sdk_version: "29",
-    srcs: ["src/lib/libminigbm_gralloc.so"],
+    srcs: ["lib64/libminigbm_gralloc.so"],
 }
 
 cc_prebuilt_library_shared {
@@ -100,7 +100,7 @@ cc_prebuilt_library_shared {
     host_supported: true,
     check_elf_files: false,
     export_include_dirs: [
-        "src/include",
+        "include",
     ],
     prefer: true,
     apex_available: [
@@ -108,7 +108,7 @@ cc_prebuilt_library_shared {
         "//apex_available:platform",
     ],
     min_sdk_version: "29",
-    srcs: ["src/lib/libminigbm_gralloc4_utils.so"],
+    srcs: ["lib64/libminigbm_gralloc4_utils.so"],
 }
 
 cc_prebuilt_binary {
@@ -116,7 +116,7 @@ cc_prebuilt_binary {
     check_elf_files: false,
     prefer: true,
     vendor_available: true,
-    srcs: ["src/bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
+    srcs: ["bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
 }
 
 cc_prebuilt_binary {
@@ -124,59 +124,59 @@ cc_prebuilt_binary {
     check_elf_files: false,
     prefer: true,
     vendor_available: true,
-    srcs: ["src/bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
+    srcs: ["bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm"],
 }
 
 cc_defaults {
     name: "minigbm_cros_gralloc_defaults",
     defaults: ["minigbm_defaults"],
     header_libs: [
-    "libhardware_headers",
-    "libnativebase_headers",
-    "libsystem_headers",
-    "minigbm_headers",
+        "libhardware_headers",
+        "libnativebase_headers",
+        "libsystem_headers",
+        "minigbm_headers",
     ],
     static_libs: ["libarect", "libhbm_minigbm"],
     vendor: true,
     shared_libs: [
-    "libcutils",
-    "libdmabufheap",
-    "libdrm",
-    "libnativewindow",
-    "libsync",
-    "liblog",
-    "android.hardware.graphics.common-V5-ndk",
+        "libcutils",
+        "libdmabufheap",
+        "libdrm",
+        "libnativewindow",
+        "libsync",
+        "liblog",
+        "android.hardware.graphics.common-V5-ndk",
     ],
 }
 
 cc_defaults {
     name: "minigbm_defaults",
     cflags: [
-    "-D_GNU_SOURCE=1",
-    "-D_FILE_OFFSET_BITS=64",
-    "-Wall",
-    "-Wsign-compare",
-    "-Wpointer-arith",
-    "-Wcast-qual",
-    "-Wcast-align",
-    "-Wno-unused-parameter",
-    "-Wno-typedef-redefinition",
+        "-D_GNU_SOURCE=1",
+        "-D_FILE_OFFSET_BITS=64",
+        "-Wall",
+        "-Wsign-compare",
+        "-Wpointer-arith",
+        "-Wcast-qual",
+        "-Wcast-align",
+        "-Wno-unused-parameter",
+        "-Wno-typedef-redefinition",
     ],
     product_variables: {
-    platform_sdk_version: {
-    cflags: ["-DANDROID_API_LEVEL=%d"],
-    },
+        platform_sdk_version: {
+            cflags: ["-DANDROID_API_LEVEL=%d"],
+        },
     },
 }
 
 prebuilt_etc {
     name: "android.hardware.graphics.allocator@4.0-service.minigbm.rc",
-    src: "src/etc/init/android.hardware.graphics.allocator@4.0-service.minigbm.rc",
+    src: "etc/init/android.hardware.graphics.allocator@4.0-service.minigbm.rc",
     sub_dir: "init",
 }
 
 prebuilt_etc {
     name: "android.hardware.graphics.allocator@4.0.xml",
-    src: "src/etc/vintf/android.hardware.graphics.allocator@4.0.xml",
+    src: "etc/vintf/android.hardware.graphics.allocator@4.0.xml",
     sub_dir: "vintf",
 }

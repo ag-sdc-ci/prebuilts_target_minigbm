@@ -1,6 +1,6 @@
 shadow prebuilt repo: minigbm (target)
-  upstream: external/minigbm
-  api-level: 34 (branch 34-20261016)
-  blobs: org.blisslabs.ag.minigbm-14000010.apex org.blisslabs.ag.minigbm.dev-14000010.apex
-  src: extracted payload + regenerated root Android.bp (gen_extractive_bp.py)
-  date: 2026-10-16
+  upstream: https://github.com/android-generic/external_minigbm
+  api-level: 34 (branch 34-20261028)
+  blobs: org.blisslabs.ag.minigbm.apex
+  payload: flattened root include/, lib64/, bin/, etc/ + modernized Android.bp
+  date: 2026-10-28
